@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Confession</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f5f5f5;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input, textarea, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #0088cc;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #006699;
+    }
+
+    .telegram-link {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .telegram-link a {
+      color: #0088cc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Confession Telegram</h1>
+  <div class="container">
+    <form id="confessionForm">
+      <textarea id="message" rows="5" placeholder="Tulis confession anda di sini..." required></textarea>
+      <button type="submit">Hantar Confession</button>
+    </form>
+    <div class="telegram-link">
+      <p>Atau sertai grup kami di Telegram:</p>
+      <a href="https://t.me/nama_grup" target="_blank">Join Telegram Group</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('confessionForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();  // Halang refresh page
+
+      const message = document.getElementById('message').value;
+      const botToken = '7683386867:AAFG5XheT-ImjcB-6dLk4WFPLUIJZpRzae8';  // Token bot anda
+      const chatID = '-1002415472310';  // Gantikan dengan Chat ID grup anda
+
+      // URL API untuk hantar mesej
+      const url = https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatID}&text=${encodeURIComponent(message)};
+
+      try {
+        const response = await fetch(url);  // Hantar permintaan ke Telegram
+        if (response.ok) {
+          alert('Confession berjaya dihantar!');
+          form.reset();  // Kosongkan borang selepas penghantaran
+        } else {
+          alert('Ralat semasa menghantar confession.');
+        }
+      } catch (error) {
+        alert('Tidak dapat berhubung dengan Telegram.');
+      }
+    });
+  </script>
+</body>
+</html>
